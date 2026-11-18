@@ -191,7 +191,13 @@ const CourseScores = () => {
                 <dd>None</dd>
 
                 <dt className="text-muted small">Registration Date</dt>
-                <dd>July 24, 2026</dd>
+                <dd>July 26, 2026</dd>
+
+                <dt className="text-muted small">Institution</dt>
+                <dd>SRM Institute of Science and Technology - Kattankulathur Campus</dd>
+
+                <dt className="text-muted small">LC ID</dt>
+                <dd>183</dd>
 
                 <dt className="text-muted small">Payment Status</dt>
                 <dd>
@@ -215,16 +221,16 @@ const CourseScores = () => {
                 <i className="bi bi-graph-up me-2"></i>Score Summary
               </h5>
             </div>
-            <div className="card-body d-flex align-items-center">
-              <div className="row text-center w-100">
-                <div className="col-6 mb-3 mb-md-0">
-                  <div className="h2 mb-0" style={{ color: '#800020', fontWeight: 'bold' }}>
+            <div className="card-body">
+              <div className="row text-center">
+                <div className="col-md-6 mb-3 mb-md-0">
+                  <div className="h2 mb-0 text-primary" style={{ fontWeight: 'bold' }}>
                     8
                   </div>
                   <div className="text-muted">Total Assignments</div>
                 </div>
-                <div className="col-6">
-                  <div className="h2 mb-0" style={{ color: '#ffb300', fontWeight: 'bold' }}>
+                <div className="col-md-6">
+                  <div className="h2 mb-0 text-warning" style={{ fontWeight: 'bold' }}>
                     {userData.avgScore || '73.8%'}
                   </div>
                   <div className="text-muted">Average Score</div>
