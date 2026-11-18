@@ -49,7 +49,7 @@ function MainLayout() {
       {/* Main Routed Page Content */}
       <div className="flex-grow-1 d-flex flex-column">
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard/" replace />} />
+          <Route path="/" element={<Navigate to="/auth/login/" replace />} />
           <Route path="/dashboard" element={<Navigate to="/dashboard/" replace />} />
           <Route path="/dashboard/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />

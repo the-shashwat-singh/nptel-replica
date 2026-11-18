@@ -47,11 +47,11 @@ const Navbar = () => {
   };
 
   const isLoginPage =
-    !token &&
-    (location.pathname === '/login' ||
-      location.pathname === '/login/' ||
-      location.pathname === '/auth/login' ||
-      location.pathname === '/auth/login/');
+    location.pathname === '/' ||
+    location.pathname === '/login' ||
+    location.pathname === '/login/' ||
+    location.pathname === '/auth/login' ||
+    location.pathname === '/auth/login/';
 
   if (isLoginPage) {
     return (
