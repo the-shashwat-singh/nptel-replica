@@ -9,7 +9,18 @@ const CourseScores = () => {
   const userData = getUserScoreData(currentEmail);
   const [showCelebrateModal, setShowCelebrateModal] = useState(false);
 
-  const assignments = userData.assignmentsList;
+  const assignments = userData.assignmentsList || [];
+
+  // Calculate average score across all 8 assignments: sum of scored points / total possible points
+  const totalScored = assignments.reduce((sum, item) => {
+    const s = parseFloat(item.score);
+    return sum + (isNaN(s) ? 0 : s);
+  }, 0);
+  const totalPossible = assignments.length * 100;
+  const computedAvgScore = totalPossible > 0 
+    ? (totalScored / totalPossible * 100).toFixed(1) + '%' 
+    : '64.1%';
+  const displayAvgScore = userData.avgScore || computedAvgScore;
 
   return (
     <main className="container my-4 flex-grow-1" data-purpose="scores-layout">
@@ -217,15 +228,15 @@ const CourseScores = () => {
             </div>
             <div className="card-body">
               <div className="row text-center">
-                <div className="col-md-6 mb-3 mb-md-0">
+                <div className="col-6 mb-3 mb-md-0">
                   <div className="h2 mb-0 text-primary" style={{ fontWeight: 'bold' }}>
-                    8
+                    {assignments.length || 8}
                   </div>
                   <div className="text-muted">Total Assignments</div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="h2 mb-0 text-warning" style={{ fontWeight: 'bold' }}>
-                    {userData.avgScore || '73.8%'}
+                    {displayAvgScore}
                   </div>
                   <div className="text-muted">Average Score</div>
                 </div>
