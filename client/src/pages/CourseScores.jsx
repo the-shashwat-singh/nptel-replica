@@ -175,6 +175,66 @@ const CourseScores = () => {
         </div>
       </div>
 
+      {/* Enrollment Details & Score Summary Section */}
+      <div className="row mb-4">
+        {/* Enrollment Info */}
+        <div className="col-12 col-md-4 mb-4 mb-md-0">
+          <div className="card h-100">
+            <div className="card-header">
+              <h5 className="mb-0">
+                <i className="bi bi-info-circle me-2"></i>Enrollment Details
+              </h5>
+            </div>
+            <div className="card-body">
+              <dl className="mb-0">
+                <dt className="text-muted small">Application Number</dt>
+                <dd>None</dd>
+
+                <dt className="text-muted small">Registration Date</dt>
+                <dd>July 24, 2026</dd>
+
+                <dt className="text-muted small">Payment Status</dt>
+                <dd>
+                  <span className="badge bg-success">Paid</span>
+                </dd>
+
+                <dt className="text-muted small">Exam Registration</dt>
+                <dd>
+                  <span className="badge bg-success">Registered</span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        {/* Score Summary */}
+        <div className="col-12 col-md-8">
+          <div className="card h-100">
+            <div className="card-header">
+              <h5 className="mb-0">
+                <i className="bi bi-graph-up me-2"></i>Score Summary
+              </h5>
+            </div>
+            <div className="card-body d-flex align-items-center">
+              <div className="row text-center w-100">
+                <div className="col-6 mb-3 mb-md-0">
+                  <div className="h2 mb-0" style={{ color: '#800020', fontWeight: 'bold' }}>
+                    8
+                  </div>
+                  <div className="text-muted">Total Assignments</div>
+                </div>
+                <div className="col-6">
+                  <div className="h2 mb-0" style={{ color: '#ffb300', fontWeight: 'bold' }}>
+                    {userData.avgScore || '73.8%'}
+                  </div>
+                  <div className="text-muted">Average Score</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Assignment Scores Table */}
       <div className="row">
         <div className="col-12">
@@ -190,25 +250,35 @@ const CourseScores = () => {
                   <thead className="table-light">
                     <tr>
                       <th scope="col">Week</th>
-                      <th scope="col">Assignment Name</th>
-                      <th scope="col">Max Score</th>
-                      <th scope="col">Score</th>
-                      <th scope="col">Percentage</th>
+                      <th scope="col">Assignment</th>
+                      <th scope="col" className="text-center">Max Score</th>
+                      <th scope="col" className="text-center">Your Score</th>
+                      <th scope="col" className="text-center">Percentage</th>
                       <th scope="col">Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     {assignments.map((item, idx) => (
                       <tr key={idx}>
-                        <th scope="row">{item.week}</th>
-                        <td>{item.name}</td>
-                        <td>{item.max}</td>
-                        <td>{item.score}</td>
                         <td>
+                          <span className="badge bg-secondary">{item.week}</span>
+                        </td>
+                        <td>{item.name}</td>
+                        <td className="text-center">{item.max}</td>
+                        <td className="text-center">
+                          {item.score !== '-' ? (
+                            <strong className="text-danger">
+                              {Number(item.score).toFixed(1)}
+                            </strong>
+                          ) : (
+                            <span className="text-muted">-</span>
+                          )}
+                        </td>
+                        <td className="text-center">
                           {item.pct > 0 ? (
-                            <div className="progress" style={{ height: '20px' }}>
+                            <div className="progress mx-auto" style={{ height: '20px', minWidth: '80px', maxWidth: '140px' }}>
                               <div
-                                className="progress-bar bg-success"
+                                className="progress-bar bg-danger"
                                 role="progressbar"
                                 style={{ width: `${item.pct}%` }}
                                 aria-valuenow={item.pct}
