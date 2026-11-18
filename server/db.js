@@ -1,13 +1,11 @@
-import sqlite3 from 'sqlite3';
 import bcrypt from 'bcryptjs';
 import path from 'path';
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// In-memory fallback data store for serverless / read-only environments
+// In-memory data store for serverless (Vercel) / read-only environments
 const memoryStore = {
   users: [
     { id: 1, email: 'student@example.com', name: 'Student User', institution: 'SRM Institute of Science and Technology' },
@@ -61,11 +59,17 @@ const memoryStore = {
 };
 
 let db = null;
-try {
-  const dbPath = path.join(__dirname, 'nptel.db');
-  db = new sqlite3.Database(dbPath);
-} catch (e) {
-  console.warn('SQLite init warning:', e.message);
+
+// Only load sqlite3 on local development when NOT in Vercel
+if (!process.env.VERCEL) {
+  try {
+    const mod = 'sqlite3';
+    const sqlite3Module = (await import(mod)).default;
+    const dbPath = path.join(__dirname, 'nptel.db');
+    db = new sqlite3Module.Database(dbPath);
+  } catch (e) {
+    console.warn('SQLite init warning, using in-memory store:', e.message);
+  }
 }
 
 export const query = (sql, params = []) => {

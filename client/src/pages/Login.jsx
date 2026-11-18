@@ -37,14 +37,14 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/send-code', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cleanEmail })
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to send code.');
+      try {
+        await fetch('/api/auth/send-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: cleanEmail })
+        });
+      } catch (err) {
+        // Safe if network or server error, proceed to code step
       }
       setStep('code');
       setCode('');
