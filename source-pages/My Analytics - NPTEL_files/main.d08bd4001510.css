@@ -1,0 +1,582 @@
+/* NPTEL Candidate Portal - Main Stylesheet */
+
+:root {
+    --nptel-primary: #800020;
+    --nptel-primary-light: #5a0018;
+    --nptel-primary-lighter: #9a0026;
+    --nptel-accent: #FFD700;
+    --nptel-secondary: #6c757d;
+    --nptel-success: #198754;
+    --nptel-info: #0dcaf0;
+    --nptel-warning: #ffc107;
+    --nptel-danger: #dc3545;
+    --nptel-text-dark: #1c1c28;
+    --nptel-text-muted: #555770;
+    --nptel-bg-light: #FFF8E7;
+}
+
+/* study.iitm.ac.in scheme — Bootstrap primary override (#133) */
+:root {
+    --bs-primary: #800020;
+    --bs-primary-rgb: 128, 0, 32;
+}
+.btn-primary {
+    background-color: #800020;
+    border-color: #800020;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #5a0018;
+    border-color: #5a0018;
+}
+.text-primary { color: #800020 !important; }
+.bg-primary { background-color: #800020 !important; }
+.border-primary { border-color: #800020 !important; }
+.link-primary { color: #800020 !important; }
+
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar (both the public and the authenticated variant) must always stack
+   above any sticky page content, e.g. `.sticky-top` cards. Bootstrap's
+   `.navbar` already sets `position: relative`; giving it a z-index above
+   `.sticky-top`'s 1020 establishes a stacking context that any
+   `.dropdown-menu` inside the navbar automatically inherits, so this class
+   of regression (navbar dropdown hidden under a page's sticky content) is
+   fixed once for every page instead of page-by-page (regression of #76/#81,
+   most recently EF-07 on the profile-corrections wizard). */
+.navbar {
+    z-index: 1030;
+}
+
+/* Navbar Customization */
+.nptel-navbar-public {
+    background: linear-gradient(180deg, #5a0018 0%, #800020 100%);
+    border-bottom: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    z-index: 1030;
+    position: relative;
+}
+
+.nptel-navbar-public .navbar-brand {
+    font-size: 1.35rem;
+    letter-spacing: 0.5px;
+    padding: 0.6rem 0;
+}
+
+.nptel-navbar-public .navbar-brand img {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+
+.nptel-navbar-public .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 0.85rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 4px;
+}
+
+.nptel-navbar-public .navbar-nav .nav-link:hover,
+.nptel-navbar-public .navbar-nav .nav-link:focus {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nptel-navbar-public .navbar-nav .nav-link.active {
+    color: #ffffff;
+}
+
+.nptel-navbar-public .dropdown-menu {
+    background: #ffffff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    margin-top: 0.25rem;
+}
+
+.nptel-navbar-public .dropdown-item {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.25rem;
+    color: #333;
+    transition: all 0.15s ease;
+}
+
+.nptel-navbar-public .dropdown-item:hover {
+    background-color: #e8eaf6;
+    color: var(--nptel-primary);
+}
+
+.nptel-navbar-public .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nptel-navbar-public .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+.nptel-navbar {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.75rem 1.25rem;
+}
+
+.nptel-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.nptel-brand:hover {
+    opacity: 0.9;
+}
+
+.nptel-logo {
+    height: 40px;
+    width: auto;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #111827;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: #800020;
+}
+
+.nptel-login {
+    border-radius: 8px;
+    padding: 0.4rem 1.25rem;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.nptel-hero {
+    background: linear-gradient(135deg, #5a0018 0%, #800020 40%, #5a0018 70%, #9a0026 100%);
+    color: #ffffff;
+    padding: 4.5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.nptel-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(154, 0, 38, 0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(90, 0, 24, 0.25) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.nptel-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.nptel-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.nptel-hero h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nptel-hero .lead {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.nptel-hero .btn-light {
+    background: #ffffff;
+    color: var(--nptel-primary);
+    font-weight: 700;
+    border: none;
+    padding: 0.65rem 1.75rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s ease;
+}
+
+.nptel-hero .btn-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #f5f5f5;
+}
+
+.nptel-hero .btn-outline-light {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.6rem 1.75rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.nptel-hero .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Stats Section */
+.nptel-stats {
+    background: var(--nptel-bg-light);
+    padding: 3.5rem 0;
+}
+
+.nptel-stats .stat-card {
+    text-align: center;
+    padding: 1.75rem 1rem;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.nptel-stats .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
+}
+
+.nptel-stats .stat-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--nptel-primary);
+    line-height: 1.2;
+}
+
+.nptel-stats .stat-desc {
+    color: var(--nptel-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.4rem;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--nptel-text-dark);
+    letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+    color: var(--nptel-text-muted);
+    font-size: 1.05rem;
+}
+
+/* Footer Styles */
+.nptel-footer {
+    background-color: #fafafc !important;
+    border-top: 1px solid #e5e7eb;
+}
+
+.nptel-footer h6 {
+    color: #1c1c28;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    line-height: 2.2;
+}
+
+.footer-links li {
+    margin-bottom: 0.25rem;
+}
+
+.footer-links a {
+    color: #8f90a6;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #800020;
+}
+
+.social-links a {
+    color: #555770;
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #800020;
+}
+
+.partner-logos img {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    max-height: 40px;
+    width: auto;
+}
+
+.partner-logos img:hover {
+    opacity: 1;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: var(--nptel-primary);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+/* Dashboard Stats Cards */
+.card.bg-primary,
+.card.bg-success,
+.card.bg-info,
+.card.bg-warning {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Messages */
+.messages-container {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Profile-corrections wizard: the sticky progress/fee header (EF-07). Pinned
+   explicitly below the navbar's stacking context (see `.navbar` z-index
+   above) so it can never repeat the #76/#81 pattern of a sticky-top block
+   painting over the navbar's user dropdown, while staying above ordinary
+   page content. */
+.wizard-sticky-header {
+    z-index: 1000;
+}
+
+.alert {
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    border-left-color: var(--nptel-success);
+}
+
+.alert-error,
+.alert-danger {
+    border-left-color: var(--nptel-danger);
+}
+
+.alert-warning {
+    border-left-color: var(--nptel-warning);
+}
+
+.alert-info {
+    border-left-color: var(--nptel-info);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    border-top: 1px solid #dee2e6;
+}
+
+footer a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--nptel-primary) !important;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--nptel-primary);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Tables */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: var(--nptel-primary);
+    color: white;
+}
+
+/* List Groups */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+}
+
+/* Loading Spinner (for HTMX) */
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+
+.htmx-request.htmx-indicator {
+    display: inline-block;
+}
+
+/* Utility Classes */
+.shadow-sm-hover:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.text-decoration-none:hover {
+    text-decoration: underline !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    footer,
+    .btn,
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* Certificate tier badges — Track C1 (#99).
+   Elite+Gold uses a metallic-gold gradient; Elite+Silver uses metallic-silver.
+   Plain Elite stays bg-warning yellow so the modifier tiers stand out. */
+.cert-tier-gold {
+    background: linear-gradient(135deg, #ffe066 0%, #d4a72c 50%, #c08a18 100%);
+    color: #3b2c00;
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.cert-tier-silver {
+    background: linear-gradient(135deg, #f1f3f5 0%, #adb5bd 50%, #6c757d 100%);
+    color: #1f2429;
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Pre-doctoral Fellowship certificate badge (#399, ops#232).
+   Its own indigo so a fellowship cert is distinguishable at a glance from
+   FDP (bg-info cyan), Star (bg-dark) and Internship (bg-success). Deliberately
+   NOT bg-secondary — that grey IS the uncoloured "unknown type" fallback this
+   change exists to stop predoc falling into. */
+.cert-type-predoc {
+    background: linear-gradient(135deg, #6f5cd6 0%, #4c3fb0 100%);
+    color: #fff;
+    font-weight: 600;
+}
+/* #399: internship previously reused Bootstrap's bg-success, which is also
+   what `excellence` uses — so a third party verifying a certificate could not
+   tell an Excellence certificate from an NPTEL Internship one by badge colour.
+   Teal keeps it in the same "achievement" family without colliding. */
+.cert-type-internship {
+    background: linear-gradient(135deg, #17a398 0%, #0f766e 100%);
+    color: #fff;
+    font-weight: 600;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Dashboard - NPTEL</title>
+<!-- Bootstrap 5.3 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<!-- Bootstrap 5.3 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    body {
+      background-color: #ffffff;
+      color: #212529;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .bg-nptel-maroon {
+      background-color: #800020;
+    }
+    .bg-nptel-green {
+      background-color: #198754;
+    }
+    .bg-notice-red {
+      background-color: #feecee;
+      border-bottom: 1px solid #fbd4d8;
+      color: #861b2d;
+    }
+    .stat-card-courses {
+      background-color: #800020;
+      color: #ffffff;
+    }
+    .stat-card-cert {
+      background-color: #198754;
+      color: #ffffff;
+    }
+    .stat-card-enroll {
+      background-color: #0dcaf0;
+      color: #000000;
+    }
+    .stat-card-exams {
+      background-color: #ffc107;
+      color: #000000;
+    }
+    .btn-outline-achieve {
+      border: 1.8px solid #ffc107;
+      color: #d39e00;
+      font-weight: 700;
+    }
+    .btn-outline-achieve:hover {
+      background-color: #ffc107;
+      color: #212529;
+    }
+    .btn-floating-report {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 1050;
+      background-color: #800020;
+      color: #ffffff;
+      border-radius: 50rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.55rem 1.15rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .btn-floating-report:hover {
+      background-color: #670019;
+      color: #ffffff;
+    }
+    .partner-logo {
+      height: 38px;
+      width: 38px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.15s ease-in-out;
+    }
+    .partner-logo:hover {
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body>
+<!-- BEGIN: MainHeader -->
+<header class="bg-nptel-maroon text-white shadow-sm" data-purpose="top-navigation">
+<div class="container d-flex align-items-center justify-content-between py-2">
+<div class="d-flex align-items-center gap-4">
+<!-- Logo: Mortarboard + NPTEL -->
+<a class="d-flex align-items-center gap-2 text-white text-decoration-none fw-bold fs-5" href="#"><i class="bi bi-mortarboard-fill me-2 fs-4 text-white"></i><span class="tracking-wide">NPTEL</span></a>
+<!-- Main Navigation Items -->
+<nav class="d-none d-md-flex align-items-center gap-4 text-white small" data-purpose="primary-nav"><a class="d-flex align-items-center text-white text-decoration-none fw-medium" href="#"><i class="bi bi-speedometer2 me-2"></i><span>Dashboard</span></a><a class="d-flex align-items-center text-white-50 text-decoration-none hover-white" href="#" style="color: rgba(255, 255, 255, 0.85) !important;"><i class="bi bi-book me-2"></i><span>My Courses</span></a><a class="d-flex align-items-center text-white-50 text-decoration-none" href="#" style="color: rgba(255, 255, 255, 0.85) !important;"><i class="bi bi-award me-2"></i><span>Certificates</span></a><a class="d-flex align-items-center text-white-50 text-decoration-none" href="#" style="color: rgba(255, 255, 255, 0.85) !important;"><i class="bi bi-ticket-perforated me-2"></i><span>Halltickets</span></a><div class="dropdown"><a aria-expanded="false" class="d-flex align-items-center text-white-50 text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" style="color: rgba(255, 255, 255, 0.85) !important;"><i class="bi bi-building me-2"></i><span>LC</span></a><ul class="dropdown-menu shadow-sm"><li><a class="dropdown-item" href="#">LC Portal</a></li><li><a class="dropdown-item" href="#">Coordinator Info</a></li></ul></div></nav>
+</div>
+<!-- Right User Menu -->
+<div class="d-flex align-items-center gap-1 text-white small cursor-pointer dropdown">
+<a aria-expanded="false" class="d-flex align-items-center gap-1.5 text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"><i class="bi bi-person-circle fs-6 me-2"></i><span>iv1560@srmist.edu.in</span></a>
+<ul class="dropdown-menu dropdown-menu-end shadow-sm">
+<li><a class="dropdown-item" href="#">Profile</a></li>
+<li><a class="dropdown-item" href="#">Logout</a></li>
+</ul>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: AlertBanner -->
+<div class="bg-notice-red py-2 px-3 text-center small" data-purpose="notification-bar">
+<div class="container d-flex align-items-center justify-content-center gap-1.5"><i class="bi bi-info-circle flex-shrink-0"></i><span>Previous semester scores and certificates have been migrated to this website! Please check yours, and if anything is missing or incorrect, cross-verify against the <a href="https://archive.nptel.ac.in" style="color: #842029 !important; font-weight: bold; text-decoration: underline;">old website (archive.nptel.ac.in)</a>, and if you still find an issue, <a href="#report" style="color: #842029 !important; font-weight: bold; text-decoration: underline;">report a problem</a>.</span></div>
+</div>
+<!-- END: AlertBanner -->
+<!-- BEGIN: MainContent -->
+<main class="container my-4 flex-grow-1" data-purpose="main-layout" style="max-width: 1140px;">
+<!-- Page Title -->
+<div class="d-flex align-items-center gap-2 mb-4"><i class="bi bi-speedometer2" style="font-size: 2.5rem; color: rgb(33, 37, 41); vertical-align: middle; margin-right: 0.75rem;"></i><h1 class="mb-0" style="font-size: 2.5rem; font-weight: bold; color: rgb(33, 37, 41);">My Dashboard</h1></div>
+<!-- Metrics Cards Grid -->
+<div class="row g-3 mb-4" data-purpose="stats-cards"><div class="col-12 col-sm-6 col-lg-3"><div class="card stat-card-courses border-0 rounded-3 shadow-sm h-100 px-3 py-4"><div class="d-flex align-items-center justify-content-between"><div><div class="fw-bold text-white mb-1">Total Courses</div><div class="fw-bold" style="font-size: 2.5rem; line-height: 1.1;">1</div></div><div><i class="bi bi-book" style="font-size: 3.5rem; color: #ffffff; opacity: 1;"></i></div></div></div></div><div class="col-12 col-sm-6 col-lg-3"><div class="card stat-card-cert border-0 rounded-3 shadow-sm h-100 px-3 py-4"><div class="d-flex align-items-center justify-content-between"><div><div class="fw-bold text-white mb-1">Certificates</div><div class="fw-bold" style="font-size: 2.5rem; line-height: 1.1;">1</div></div><div><i class="bi bi-award-fill" style="font-size: 3.5rem; color: #ffffff; opacity: 1;"></i></div></div></div></div><div class="col-12 col-sm-6 col-lg-3"><div class="card stat-card-enroll border-0 rounded-3 shadow-sm h-100 px-3 py-4"><div class="d-flex align-items-center justify-content-between"><div><div class="fw-bold text-white mb-1">Active Enrollments</div><div class="fw-bold" style="font-size: 2.5rem; line-height: 1.1; color: #ffffff;">0</div></div><div><i class="bi bi-clipboard-check" style="font-size: 3.5rem; color: #ffffff; opacity: 1;"></i></div></div></div></div><div class="col-12 col-sm-6 col-lg-3"><div class="card stat-card-exams border-0 rounded-3 shadow-sm h-100 px-3 py-4"><div class="d-flex align-items-center justify-content-between"><div><div class="fw-bold text-white mb-1">Pending Exams</div><div class="fw-bold" style="font-size: 2.5rem; line-height: 1.1; color: #ffffff;">0</div></div><div><i class="bi bi-pencil-square" style="font-size: 3.5rem; color: #ffffff; opacity: 1;"></i></div></div></div></div></div>
+<!-- Two-Column Main Content Section -->
+<div class="row g-4 align-items-start">
+<!-- Left Column: Recent Activity (Spans 8 cols on lg) -->
+<div class="col-12 col-lg-8">
+<div class="card border border-light-subtle rounded-3 shadow-sm overflow-hidden" data-purpose="recent-activity-panel"><div class="card-header bg-nptel-maroon text-white d-flex align-items-center gap-2" style="padding: 0.9rem 1rem; font-size: 1.15rem; font-weight: bold;"><i class="bi bi-clock-history"></i><span>Recent Activity</span></div><div class="card-body p-4"><div class="d-flex align-items-center justify-content-between"><div><h5 class="card-title fs-6 fw-medium text-dark mb-1">Data Base Management System</h5><div class="text-muted small">noc26-cs117 - Jul-Dec 2026</div></div><span class="badge text-bg-success px-2.5 py-1.5 fw-medium">Enrolled</span></div></div><div class="card-footer bg-light px-4 py-3" style="border-top: 0px;"><a class="btn btn-outline-primary btn-sm fw-semibold" href="#">View All Courses →</a></div></div>
+</div>
+<!-- Right Column: Quick Actions & Deadlines (Spans 4 cols on lg) -->
+<div class="col-12 col-lg-4 d-flex flex-column gap-4">
+<!-- Quick Actions Panel -->
+<div class="card border border-light-subtle rounded-3 shadow-sm overflow-hidden" data-purpose="quick-actions-panel">
+<!-- Header -->
+<div class="card-header bg-nptel-green text-white py-2.5 px-3 d-flex align-items-center gap-2 fw-bold fs-6">
+<i class="bi bi-lightbulb"></i>
+<span>Quick Actions</span>
+</div>
+<!-- Action Buttons -->
+<div class="card-body p-3 d-flex flex-column gap-3 bg-white"><a class="btn btn-outline-success gap-2" href="#" style="height: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 400 !important;"><i class="bi bi-download"></i><span>Download Certificates</span></a><a class="btn btn-outline-achieve gap-2" href="#" style="height: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 400 !important;"><i class="bi bi-trophy"></i><span>My Achievements</span></a><a class="btn btn-outline-primary gap-2" href="#" style="height: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 400 !important;"><i class="bi bi-graph-up"></i><span>My Analytics</span></a><a class="btn btn-outline-secondary gap-2" href="#" style="height: 48px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 400 !important;"><i class="bi bi-person"></i><span>My Profile</span></a></div>
+</div>
+<!-- Upcoming Deadlines Panel -->
+<div class="card border border-light-subtle rounded-3 shadow-sm overflow-hidden" data-purpose="deadlines-panel">
+<!-- Header -->
+<div class="card-header bg-warning text-white py-2 px-3 d-flex align-items-center gap-2 fw-semibold small">
+<i class="bi bi-exclamation-triangle"></i>
+<span>Upcoming Deadlines</span>
+</div>
+<!-- Body -->
+<div class="card-body py-5 text-center text-muted small">
+          No upcoming deadlines
+        </div>
+</div>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="mt-auto border-top bg-white py-5" data-purpose="page-footer">
+<div class="container">
+<div class="row g-4 align-items-start pb-4">
+<!-- Left: Logo -->
+<div class="col-12 col-md-3">
+<a class="d-inline-block" href="#">
+<img alt="NPTEL Logo" class="img-fluid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1V2w2t2IkuE6BYjmqXT4xe8RQVDoDnKo5cHfBeABm-ZSIiBPuMk19eSjH5o-y-pJgvsvF5vsdSnje1qPtV2WNzailmHKanr1Df-FTY2t7b8lRq5ACcumD-pMOi7H4Xxz0564wbdYY_gyAIkfh_Hjd2Xxg-gia9mkMCHj_qNcNqYv1y2wDpQ4HXWD37SzUvu07LerNKzUzsqN_gJPHgzKIntSM7eMLQNHv4GOEz0mp5Kt4NJoKQ6Vi0Q" style="height: 42px; width: auto; object-fit: contain;">
+</a>
+</div>
+<!-- Center: About NPTEL & Social Links -->
+<div class="col-12 col-md-5 small text-secondary">
+<h6 class="fw-bold text-dark mb-2">About NPTEL</h6>
+<p class="mb-2">
+          National Programme on Technology Enhanced Learning (NPTEL) is a joint initiative of the IITs and IISc to offer online courses &amp; certification.
+        </p>
+<p class="mb-3">
+          Funded by MoE, Govt. of India.
+        </p>
+<h6 class="fw-bold text-dark mb-2">Follow Us</h6>
+<div class="d-flex align-items-center gap-3 fs-5 text-secondary">
+<a class="text-secondary text-decoration-none hover-dark" href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+<a class="text-secondary text-decoration-none hover-dark" href="#" title="Twitter"><i class="bi bi-twitter"></i></a>
+<a class="text-secondary text-decoration-none hover-dark" href="#" title="YouTube"><i class="bi bi-youtube"></i></a>
+<a class="text-secondary text-decoration-none hover-dark" href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+</div>
+</div>
+<!-- Right: Our Partners Institutional Emblems -->
+<div class="col-12 col-md-4">
+<h6 class="fw-bold text-dark mb-3">Our Partners</h6>
+<div class="d-flex flex-column gap-2">
+<div class="d-flex flex-wrap align-items-center gap-2">
+<img alt="IIT Madras" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkhmFESS9vdWxPtEkE8FYt6FeqX9mHWTp4QwL0FOviRDXP6Zu36H741hEF0Imqdmxp8H4mwgDaAx7ao0h-gatBflFeWZkCOx_W6x_K15-oZLxkb1HN-Zr8InEmO7yroJWVAzlJ9SjbB5P2IITu7Iy_rGE2C8nRsrtA5qFcVL1Wq8Vlsb0uK41HYHjZT-XQH4vMvTICT4swyGTMcKEiaGEjAQcMmWLo_RXlayrMlGO27bV6jFuZlPv4WA" title="IIT Madras">
+<img alt="IIT Bombay" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjSw_1uzEdtIXdEk_gmh0qxuHG1kPBRamBDnqnLuPM58sBjadkM5oCy3qLHJnW0X7KEuJz1E0DdqCjVdANIChX3Ch7RT3g_6thaEjyZfh-Qc-60nUbLs6hKFmB2QS3BLHvisUP11smk2eqLqVHi8INzleSw1qA9Bfxg05rtIYW6BBJ-fhY-GbBxFsip-PDY1prsjhgus8RQMKpeyqQ39l4X0BtbN1TwIZRwdxJLGA6noO9jj2K3Wr0EQ" title="IIT Bombay">
+<img alt="IIT Delhi" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTZCMWWvl32SLnmcKc10HhNfQDHjxZ6TX4w5vJXvAVgFAUUOhds4MukHfcMty-zC3Nlm6pKp9K3Njv5d4FIBQT_FwCMmw8RuNvGiQtqHL3K4xfWZZFLCzXeo2kEfc3Xnyjtp02tHvBirgeAm2FTphzhK_Xj_Z4z09ETVjfvYj41Yd1mJqqs9cNogyNdWOdn3iMheZP6dDlPDPZ7FN5jt6FdPJ37rrntThYyDXzHaK-_hQfBierBv_ljg" title="IIT Delhi">
+<img alt="IIT Kanpur" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC1T6ZPLvb_ZZdLJuwRWYqExatjnk7cMa-iba4CFQ5sULCO6b8rg_dxPdwenNhIigNZ5UXQBS9fTS4rjWo7NC2Urui2WCtxhV4fYIpwfexiFisQ9u_KG3ogSgjLeiyDJhMP6A6WtsGsIbH3him6ev0MT69ELaa4iCwtIzSrRUyfnarFwRBxZr8BOppflo5SKUmmh0o4GiaRsWSqMSxpAbN2DQA7ivPuQ5IW_7VKL2gEbiIeg3122d7rQ" title="IIT Kanpur">
+<img alt="IIT Kharagpur" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU3iZT4X2S2zVXdr8H2178X5M-6PvRLHNSyzLW32-gPapoBmg8DJRNm7TguUf90AoCQgiwgW0ep0PjIZUaqNE_Y0ti_Fky4bnnB-V_3JA9iUUA6dt0Tqhzn1Znh0VAMOXuheJNzw2KPqPnbI5p8ozrUjyI5XOLdVEydny3FjCRDtpBgHozUk-gnzZzATaPEx8kPYm3Gu4KPK-IXJ2vrU1CrM4cLqYE3cOIptYShrvshY4DQKYNRZCmZQ" title="IIT Kharagpur">
+<img alt="IIT Guwahati" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyfYNZU35V9bGOYDm2r6WBlwoWkydZS_cofH6B7sBVQLKae7wIqtvlpPmne5AwMNOwQWh0cdjYNwdbcIuGWVRqDi7SmZ7oIH8E95Xm8YXlbgMn42kj4h8Hgic3TiLZj0kK4gh0PQn68h0zLBmUDul9Xum-jGWvv5IUuSG7mQhP9QyAqvzvWvS327QHJmfagj2UPNPPGH0lJe3U-V0lUKRc_e9yYkC510Z7Nq_HyqMNgPKUSgP5MA7P6Q" title="IIT Guwahati">
+<img alt="IIT Roorkee" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAImWrwz_uuNFunXctVk-1De2CcgDdsiY6nRIbhcFH2eXlL7H0bDnqGj4nCYMGAFZMMQfyzKbOjEUtKHwLi4RgT1SnijQm6GYFFwMFIWVHCAXCGN3HK-pBlScPUx4dNN4vIYlPzaSanY4TEe95zUFo0UzbW1Z2E5jeZLp6GXC43SrNfB6YW3UrFiV3CBZEm8q8hNAbCwxslx-X2vxo4iktB6jAb_v6UvMcowlDRr4YnGX-dRmfIhEow8g" title="IIT Roorkee">
+</div>
+<div class="d-flex align-items-center">
+<img alt="IISc Bangalore" class="partner-logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVGF2cC-UdZGVTVMLedFr6vs1i2nP_S9q9ewnCqOukMfX5ieEpbiBeVe__GVfvNX7vNzdJ9j-NKyZR-DYFwj7_joTnbffM5fsc-qDyZtx1dx9C4iYuFSA8OkaK6U7srlVtHEKQuSZ-WP83pq8SOvOQmVGfdVpw68CUf4sDAjAHMgeHdB9aNCKg7PjRn08rXQuitGGH2VXTUx-NrjY1qDPtzdtCxWQBMqNJC4N3CHJCgObqmJwv8bCidQ" title="IISc Bangalore">
+</div>
+</div>
+</div>
+</div>
+<!-- Copyright row -->
+<div class="pt-4 border-top text-center text-muted small">
+      © 2026 NPTEL - All rights reserved. National Programme on Technology Enhanced Learning, IIT Madras
+    </div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: FloatingActionButton -->
+<aside data-purpose="floating-support-action">
+<a class="btn-floating-report" href="#report-modal">
+<i class="bi bi-bug fs-6"></i>
+<span>Report a problem</span>
+</a>
+</aside>
+<!-- END: FloatingActionButton -->
+
+
+</body></html>
