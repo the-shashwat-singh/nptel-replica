@@ -191,13 +191,7 @@ const CourseScores = () => {
                 <dd>None</dd>
 
                 <dt className="text-muted small">Registration Date</dt>
-                <dd>July 26, 2026</dd>
-
-                <dt className="text-muted small">Institution</dt>
-                <dd>SRM Institute of Science and Technology - Kattankulathur Campus</dd>
-
-                <dt className="text-muted small">LC ID</dt>
-                <dd>183</dd>
+                <dd>July 24, 2026</dd>
 
                 <dt className="text-muted small">Payment Status</dt>
                 <dd>
