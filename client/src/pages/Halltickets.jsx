@@ -3,10 +3,19 @@ import React, { useState, useEffect } from 'react';
 const Halltickets = () => {
   const [halltickets, setHalltickets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showTimeoutModal, setShowTimeoutModal] = useState(false);
+  const [selectedHt, setSelectedHt] = useState(null);
+  const [errorBanner, setErrorBanner] = useState('');
 
   // Filters
   const [filterYear, setFilterYear] = useState('');
   const [filterSemester, setFilterSemester] = useState('');
+
+  const handleDownloadClick = (ht) => {
+    setSelectedHt(ht);
+    setShowTimeoutModal(true);
+    setErrorBanner(`Hall ticket download for ${ht.course_title} (${ht.course_code}) has timed out. The examination window ended on ${ht.allocated_exam_date}.`);
+  };
 
   useEffect(() => {
     fetch('/api/halltickets')
@@ -107,6 +116,21 @@ const Halltickets = () => {
       {/* Exam Centre Details */}
       <h3 className="h4 mb-3">Exam Centre Details</h3>
 
+      {errorBanner && (
+        <div className="alert alert-danger alert-dismissible fade show d-flex align-items-center mb-3" role="alert">
+          <i className="bi bi-clock-history me-2 fs-5"></i>
+          <div>
+            <strong>Download Timed Out:</strong> {errorBanner}
+          </div>
+          <button
+            type="button"
+            className="btn-close ms-auto"
+            aria-label="Close"
+            onClick={() => setErrorBanner('')}
+          ></button>
+        </div>
+      )}
+
       {loading ? (
         <div className="text-center py-5">
           <div className="spinner-border text-primary" role="status">
@@ -157,9 +181,9 @@ const Halltickets = () => {
                     )}
                   </td>
                   <td className="text-center">
-                    <a
-                      href="/certificates/noc26-cs117-certificate.png"
-                      download="NPTEL_Hallticket_noc26-cs117.png"
+                    <button
+                      type="button"
+                      onClick={() => handleDownloadClick(ht)}
                       className="btn btn-sm btn-primary d-inline-flex flex-column align-items-center justify-content-center p-2 text-center"
                       style={{
                         width: '74px',
@@ -167,13 +191,11 @@ const Halltickets = () => {
                         lineHeight: '1.15',
                         borderRadius: '6px'
                       }}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       title="Download Hall Ticket"
                     >
                       <i className="bi bi-download mb-1" style={{ fontSize: '0.85rem' }}></i>
                       <span>Download Hall Ticket</span>
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -187,6 +209,69 @@ const Halltickets = () => {
             </tbody>
           </table>
         </div>
+      )}
+
+      {/* Hall Ticket Expired / Timeout Modal */}
+      {showTimeoutModal && (
+        <>
+          <div
+            className="modal-backdrop fade show"
+            style={{ zIndex: 1055 }}
+            onClick={() => setShowTimeoutModal(false)}
+          ></div>
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            role="dialog"
+            style={{ zIndex: 1060 }}
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content shadow border-0">
+                <div className="modal-header bg-light border-bottom">
+                  <h5 className="modal-title text-danger d-flex align-items-center fw-bold">
+                    <i className="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                    Hall Ticket Download Timed Out
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={() => setShowTimeoutModal(false)}
+                  ></button>
+                </div>
+                <div className="modal-body p-4">
+                  <div className="d-flex align-items-start mb-3">
+                    <div className="rounded-circle bg-danger-subtle p-3 me-3 text-danger d-flex align-items-center justify-content-center">
+                      <i className="bi bi-clock-history fs-3"></i>
+                    </div>
+                    <div>
+                      <h6 className="fw-bold mb-1 text-danger">Download Window Expired</h6>
+                      <p className="text-secondary small mb-2">
+                        The examination for <strong>{selectedHt?.course_title || 'Data Base Management System'} ({selectedHt?.course_code || 'noc26-cs117'})</strong> was conducted on <strong>{selectedHt?.allocated_exam_date || '2026-09-20'}</strong>.
+                      </p>
+                      <p className="small text-muted mb-0">
+                        Hall ticket downloads are automatically disabled after the examination date (Time Out Error: <code>ERR_HT_DOWNLOAD_TIMEOUT</code>).
+                      </p>
+                    </div>
+                  </div>
+                  <div className="alert alert-warning py-2 px-3 small mb-0 d-flex align-items-center">
+                    <i className="bi bi-info-circle-fill me-2 text-warning"></i>
+                    <span>For verification or past records, please use the <strong>Report a problem</strong> feature at the bottom right.</span>
+                  </div>
+                </div>
+                <div className="modal-footer border-top-0 pt-0 pb-3 px-4">
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-sm px-4"
+                    onClick={() => setShowTimeoutModal(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </main>
   );
